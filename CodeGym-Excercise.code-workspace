@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "AreaCalculator"
+		},
+		{
+			"path": "UserName"
 		}
 	],
 	"settings": {}

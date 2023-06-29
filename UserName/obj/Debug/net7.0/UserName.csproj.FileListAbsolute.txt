@@ -1,0 +1,15 @@
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\UserName\bin\Debug\net7.0\UserName.exe
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\UserName\bin\Debug\net7.0\UserName.deps.json
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\UserName\bin\Debug\net7.0\UserName.runtimeconfig.json
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\UserName\bin\Debug\net7.0\UserName.dll
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\UserName\bin\Debug\net7.0\UserName.pdb
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\UserName\obj\Debug\net7.0\UserName.csproj.AssemblyReference.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\UserName\obj\Debug\net7.0\UserName.GeneratedMSBuildEditorConfig.editorconfig
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\UserName\obj\Debug\net7.0\UserName.AssemblyInfoInputs.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\UserName\obj\Debug\net7.0\UserName.AssemblyInfo.cs
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\UserName\obj\Debug\net7.0\UserName.csproj.CoreCompileInputs.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\UserName\obj\Debug\net7.0\UserName.dll
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\UserName\obj\Debug\net7.0\refint\UserName.dll
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\UserName\obj\Debug\net7.0\UserName.pdb
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\UserName\obj\Debug\net7.0\UserName.genruntimeconfig.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\UserName\obj\Debug\net7.0\ref\UserName.dll
