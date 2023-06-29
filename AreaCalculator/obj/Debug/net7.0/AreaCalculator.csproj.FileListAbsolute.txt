@@ -1,0 +1,15 @@
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\AreaCalculator\bin\Debug\net7.0\AreaCalculator.exe
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\AreaCalculator\bin\Debug\net7.0\AreaCalculator.deps.json
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\AreaCalculator\bin\Debug\net7.0\AreaCalculator.runtimeconfig.json
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\AreaCalculator\bin\Debug\net7.0\AreaCalculator.dll
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\AreaCalculator\bin\Debug\net7.0\AreaCalculator.pdb
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\AreaCalculator\obj\Debug\net7.0\AreaCalculator.csproj.AssemblyReference.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\AreaCalculator\obj\Debug\net7.0\AreaCalculator.GeneratedMSBuildEditorConfig.editorconfig
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\AreaCalculator\obj\Debug\net7.0\AreaCalculator.AssemblyInfoInputs.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\AreaCalculator\obj\Debug\net7.0\AreaCalculator.AssemblyInfo.cs
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\AreaCalculator\obj\Debug\net7.0\AreaCalculator.csproj.CoreCompileInputs.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\AreaCalculator\obj\Debug\net7.0\AreaCalculator.dll
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\AreaCalculator\obj\Debug\net7.0\refint\AreaCalculator.dll
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\AreaCalculator\obj\Debug\net7.0\AreaCalculator.pdb
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\AreaCalculator\obj\Debug\net7.0\AreaCalculator.genruntimeconfig.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\AreaCalculator\obj\Debug\net7.0\ref\AreaCalculator.dll
