@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/CodeGym-Unity-Study.csproj",
+                "${workspaceFolder}/TimeDisplay.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/CodeGym-Unity-Study.csproj",
+                "${workspaceFolder}/TimeDisplay.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/CodeGym-Unity-Study.csproj"
+                "${workspaceFolder}/TimeDisplay.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

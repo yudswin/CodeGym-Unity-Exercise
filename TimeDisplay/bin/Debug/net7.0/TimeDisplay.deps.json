@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v7.0": {
-      "CodeGym-Unity-Study/1.0.0": {
+      "TimeDisplay/1.0.0": {
         "runtime": {
-          "CodeGym-Unity-Study.dll": {}
+          "TimeDisplay.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "CodeGym-Unity-Study/1.0.0": {
+    "TimeDisplay/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

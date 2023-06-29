@@ -1,2 +1,2 @@
-# CodeGym-Unity-Study
+# CodeGym-Unity-Exercise
  

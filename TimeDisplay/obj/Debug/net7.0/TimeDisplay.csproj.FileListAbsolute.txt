@@ -1,0 +1,15 @@
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\TimeDisplay\bin\Debug\net7.0\TimeDisplay.exe
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\TimeDisplay\bin\Debug\net7.0\TimeDisplay.deps.json
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\TimeDisplay\bin\Debug\net7.0\TimeDisplay.runtimeconfig.json
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\TimeDisplay\bin\Debug\net7.0\TimeDisplay.dll
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\TimeDisplay\bin\Debug\net7.0\TimeDisplay.pdb
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\TimeDisplay\obj\Debug\net7.0\TimeDisplay.csproj.AssemblyReference.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\TimeDisplay\obj\Debug\net7.0\TimeDisplay.GeneratedMSBuildEditorConfig.editorconfig
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\TimeDisplay\obj\Debug\net7.0\TimeDisplay.AssemblyInfoInputs.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\TimeDisplay\obj\Debug\net7.0\TimeDisplay.AssemblyInfo.cs
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\TimeDisplay\obj\Debug\net7.0\TimeDisplay.csproj.CoreCompileInputs.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\TimeDisplay\obj\Debug\net7.0\TimeDisplay.dll
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\TimeDisplay\obj\Debug\net7.0\refint\TimeDisplay.dll
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\TimeDisplay\obj\Debug\net7.0\TimeDisplay.pdb
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\TimeDisplay\obj\Debug\net7.0\TimeDisplay.genruntimeconfig.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\TimeDisplay\obj\Debug\net7.0\ref\TimeDisplay.dll
