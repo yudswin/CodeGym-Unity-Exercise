@@ -1,0 +1,15 @@
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\CurrencyExchange\obj\Debug\net7.0\CurrencyExchange.csproj.AssemblyReference.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\CurrencyExchange\obj\Debug\net7.0\CurrencyExchange.GeneratedMSBuildEditorConfig.editorconfig
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\CurrencyExchange\obj\Debug\net7.0\CurrencyExchange.AssemblyInfoInputs.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\CurrencyExchange\obj\Debug\net7.0\CurrencyExchange.AssemblyInfo.cs
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\CurrencyExchange\obj\Debug\net7.0\CurrencyExchange.csproj.CoreCompileInputs.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\CurrencyExchange\bin\Debug\net7.0\CurrencyExchange.exe
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\CurrencyExchange\bin\Debug\net7.0\CurrencyExchange.deps.json
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\CurrencyExchange\bin\Debug\net7.0\CurrencyExchange.runtimeconfig.json
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\CurrencyExchange\bin\Debug\net7.0\CurrencyExchange.dll
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\CurrencyExchange\bin\Debug\net7.0\CurrencyExchange.pdb
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\CurrencyExchange\obj\Debug\net7.0\CurrencyExchange.dll
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\CurrencyExchange\obj\Debug\net7.0\refint\CurrencyExchange.dll
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\CurrencyExchange\obj\Debug\net7.0\CurrencyExchange.pdb
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\CurrencyExchange\obj\Debug\net7.0\CurrencyExchange.genruntimeconfig.cache
+D:\YUDZ\Documents\GitHub\CodeGym-Unity-Study\CurrencyExchange\obj\Debug\net7.0\ref\CurrencyExchange.dll

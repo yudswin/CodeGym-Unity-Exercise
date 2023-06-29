@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "UserName"
+		},
+		{
+			"path": "CurrencyExchange"
 		}
 	],
 	"settings": {}
