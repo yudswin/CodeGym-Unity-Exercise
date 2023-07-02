@@ -75,7 +75,7 @@ namespace IntegerToString
             Console.WriteLine(ConvertToWords(input));
 
             //Loop user input
-            Console.Write("\nPress 'M' to exit the process...");
+            Console.Write("\nPress 'M' to continue...");
             if (Console.ReadKey().Key == ConsoleKey.M) goto UserInput;
 
 
