@@ -1,89 +1,83 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.Diagnostics;
 
 namespace IntegerToString
 {
     internal class Program
     {
+        static string ConvertToWords(int num)
+        {
+            //String array to store words
+            string[] single = { " ", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+            string[] multiple = { " ", " ", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety" };
+            string[] two = { "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
+            string pow = "hundred";
+
+            //Get digits
+            int a, b, c;
+            a = num / 100; // first digit
+            b = num / 10 % 10; // second digit  
+            c = num % 10; // last digit
+
+            //Debug: check digit
+            //Console.WriteLine(a + "\t" + b + "\t" + c);
+
+            //Convert
+            if (num < 1000 && num > 99)
+            {
+                if (b == 1)
+                {
+                    return single[a] + " " + pow + " and " + two[c];
+                }
+                else if (b > 1)
+                {
+                    return single[a] + " " + pow + " and " + multiple[b] + " " + single[c];
+                }
+                else if (c != 0)
+                {
+                    return single[a] + " " + pow + " and " + single[c];
+                } else
+                {
+                    return single[a] + " " + pow;
+                }
+            }
+            else
+            {
+                return "Error input!!";
+            }
+
+        }
 
         static void Main(string[] args)
         {
 
-        /**
-        use case 1: 000  error input
-        use case 2: 1a2  error input
-        use case 3: 132  3 digit != 0
-        use case 4: 201  2nd digit = 0
-        use case 5: 203  3rd digit = 0
-        use case 6: 021  1st digit = 0
-        **/
+            /**
+            test case 1: Number with zeros: 102, 305, 700
+            test case 2: Number ending with zero: 120, 450, 900
+            test case 3: Number with repeated digit (2, 3 digits): 777, 322, 113
+            test case 2: Number with tens and units: 357, 425, 836
+            test case 4: Number with teens: 113, 512, 219
+            **/
 
-            Console.WriteLine();
-            Console.Write("Enter 3 digit integer: ");
-            int abc = Convert.ToInt16(Console.ReadLine());
-
-            //Get digit
-            int a, b, c;
-            a = abc / 100; // first digit
-            b = abc / 10 % 10; // second digit  
-            c = abc % 10; // last digit
-
-            //String array to store words
-            string[] lastdigit = { " ", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
-            string[] seconddigit = { " ", "ten", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety" };
-            string firstdigit = "hundred";
-
-
-            //debug: check digit
-            Console.WriteLine(a + "\t" + b + "\t" + c);
-
-            if (abc < 1000 || abc > 99 )
-            {
-               
-            } else if (abc <= 99 || abc > 9)
-            {
-                Console.WriteLine("Error input!!");
-            }
-
-
-
-
+            Console.WriteLine(ConvertToWords(111)); //error 
+            Console.WriteLine(ConvertToWords(132));
+            Console.WriteLine(ConvertToWords(201));
+            Console.WriteLine(ConvertToWords(230));
+            Console.WriteLine(ConvertToWords(021)); //error
             
-            //switch (value % 10)
-            //{
-            //    case 0: result = " " + result; break;
-            //    case 1: result = " one" + result; break;
-            //    case 2: result = " two" + result; break;
-            //    case 3: result = " three" + result; break;
-            //    case 4: result = " four" + result; break;
-            //    case 5: result = " five" + result; break;
-            //    case 6: result = " six" + result; break;
-            //    case 7: result = " seven" + result; break;
-            //    case 8: result = " eight" + result; break;
-            //    case 9: result = " nine" + result; break;
-            //}
-            
-            //switch (value / 10 % 10)
-            //{
-            //    case 0: result = " " + result; break;
-            //    case 1: result = " one" + result; break;
-            //    case 2: result = " two" + result; break;
-            //    case 3: result = " three" + result; break;
-            //    case 4: result = " four" + result; break;
-            //    case 5: result = " five" + result; break;
-            //    case 6: result = " six" + result; break;
-            //    case 7: result = " seven" + result; break;
-            //    case 8: result = " eight" + result; break;
-            //    case 9: result = " nine" + result; break;
-            //}
+            Console.WriteLine("------------------");
 
+        UserInput:
+            Console.Write("\nEnter 3 digit integer: "); // User input
+            int input = Convert.ToInt16(Console.ReadLine());
+            Console.WriteLine(ConvertToWords(input));
 
-            //Console.WriteLine(value % 10);
-            //Console.WriteLine(value /10 % 10);
-            //Console.WriteLine(value /100 % 10);
+            //Loop user input
+            Console.Write("\nPress 'M' to exit the process...");
+            if (Console.ReadKey().Key == ConsoleKey.M) goto UserInput;
 
-            Console.ReadKey();
 
         }
     }
