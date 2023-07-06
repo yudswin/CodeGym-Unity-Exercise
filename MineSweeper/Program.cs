@@ -1,9 +1,35 @@
 ﻿using System;
 using System.Data;
+using System.Runtime.InteropServices;
 
 namespace MineSweeper
 {
-    internal class Program
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Console.Write("Enter row: ");
+            int row = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter collumn: ");
+            int col = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter i: ");
+            int i = Convert.ToInt32(Console.ReadLine())
+
+            MineSweeper game = new MineSweeper(row, col)
+            for (int j = 0; j < i; j++)
+            {
+                Console.WriteLine("\ni = " + j);
+                game.Setup();
+                game.DrawMap();
+                Console.WriteLine("______________________");
+            }
+            Console.ReadKey();
+
+
+        }
+    }
+    class MineSweeper
     {
         /*                  [GAME LOGIC] 
          * 2 Array with 2 Dimension: 1 for the bomb, 1 for the indices
@@ -28,55 +54,73 @@ namespace MineSweeper
             PrintBoard()
         */
 
-        //Variables and constants
-        const int fixedRow = 5;                         // x cordinate 
-        const int fixedColumn = 5;                      // y cordinate 
-        const int fixedBomb = 5;
+        // Variables and constants
+        private int fixedRow;                         // x cordinate 
+        private int fixedColumn;                      // y cordinate 
+        private const int fixedBomb = 5;
 
-        string[,] map = new string[fixedRow, fixedColumn];        //Printing array
-        int[,] neighbor = new int[fixedRow, fixedColumn];     //Neighbor array 
-        bool[,] bomb = new bool[fixedRow, fixedColumn];       //Bomb array
+        private string[,] map;        // Printing array
+        private int[,] neighbor;      // Neighbor array 
+        private bool[,] bomb;         // Bomb array
 
-        static void Main(string[] args)
+        // Constructor
+        public MineSweeper(int intputRow, int inputColumn)
         {
-            Program game = new Program();
-            game.Setup();
-            for (int i = 0; i < game.map.GetLength(0); i ++)
+            
+            this.fixedRow = intputRow;
+            this.fixedColumn = inputColumn;
+
+            map = new string[fixedRow, fixedColumn];
+            neighbor = new int[fixedRow, fixedColumn];
+            bomb = new bool[fixedRow, fixedColumn];
+        }
+
+
+
+        void BombCalculate()
+        {
+            
+        }
+
+        public void DrawMap() //method to print map to the 
+        {
+            for (int i = 0; i < map.GetLength(0); i++)
             {
-                for (int j = 0; j < game.map.GetLength(1); j ++)
+                for (int j = 0; j < map.GetLength(1); j++)
                 {
-                    Console.Write(game.map[i, j] + " ");
+                    Console.Write(map[i, j] + " ");
                 }
                 Console.WriteLine();
             }
+
+            /*  [Debug: check neighbor[] and bomb[] ]
             Console.WriteLine();
-            for (int i = 0; i < game.neighbor.GetLength(0); i++)
+            for (int i = 0 i < game.neighbor.GetLength(0); i++)
             {
                 for (int j = 0; j < game.neighbor.GetLength(1); j++)
                 {
-                    Console.Write(game.neighbor[i, j] + " ");
+                    Console.Write(game.neighbor[i, j] + " ")
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine();
+           
             for (int i = 0; i < game.bomb.GetLength(0); i++)
             {
                 for (int j = 0; j < game.bomb.GetLength(1); j++)
                 {
-                    Console.Write(game.bomb[i, j] + " ");
+                    Console.Write(game.bomb[i, j] + " ")
                 }
                 Console.WriteLine();
             }
-            Console.ReadKey();
-
+            */
         }
 
-        void Setup()
+        public void Setup()
         {
             GenerateMap();
             GenerateBomb();
             GenerateNeighbor();
-            DrawMap();
+            MapInitialize();
         }
 
         void GenerateMap()
@@ -109,7 +153,6 @@ namespace MineSweeper
             }
         }
 
-
         void GenerateNeighbor()
         {
             for (int x = 0; x < fixedRow; x++)
@@ -138,7 +181,7 @@ namespace MineSweeper
         }
 
         
-        void DrawMap()
+        void MapInitialize()
         {
             for (int x = 0;x < fixedRow; x++)
             {
