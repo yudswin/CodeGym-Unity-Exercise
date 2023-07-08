@@ -13,13 +13,13 @@ namespace MineSweeper
             int row = Convert.ToInt32(Console.ReadLine());
             Console.Write("Enter collumn: ");
             int col = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter i: ");
-            int i = Convert.ToInt32(Console.ReadLine())
+            Console.WriteLine("Enter number of table: ");
+            int i = Convert.ToInt32(Console.ReadLine());
 
-            MineSweeper game = new MineSweeper(row, col)
+            MineSweeper game = new MineSweeper(row, col);
             for (int j = 0; j < i; j++)
             {
-                Console.WriteLine("\ni = " + j);
+                Console.WriteLine("[Table {0}]",j);
                 game.Setup();
                 game.DrawMap();
                 Console.WriteLine("______________________");
