@@ -8,15 +8,15 @@ namespace ArrayDeletion
         static void Main(string[] args)
         {
             //using Array
-            //Console.Write("Enter size of array: ");
-            //int size_array = Convert.ToInt32(Console.ReadLine());
-            //int[] numbers = RandomArray(size_array);
-            //PrintArray(numbers);
+            Console.Write("Enter size of array: ");
+            int size_array = Convert.ToInt32(Console.ReadLine());
+            int[] numbers = RandomArray(size_array);
+            PrintArray(numbers);
 
-            //Console.WriteLine("Enter number to delete: ");
-            //int del = Convert.ToInt32(Console.ReadLine());
-            //Deletion(numbers, del);
-            //PrintArray(numbers);
+            Console.WriteLine("Enter number to delete: ");
+            int del = Convert.ToInt32(Console.ReadLine());
+            Deletion(numbers, del);
+            PrintArray(numbers);
 
 
             //using List
@@ -26,7 +26,7 @@ namespace ArrayDeletion
             List<int> list = RandomList(size_list);
             PrintList(list);
             Console.WriteLine("Enter number to delete: ");
-            int del = Convert.ToInt32(Console.ReadLine());
+            del = Convert.ToInt32(Console.ReadLine());
             Deletion(list, del);
             PrintList(list);
 
