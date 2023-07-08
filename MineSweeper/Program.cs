@@ -13,13 +13,13 @@ namespace MineSweeper
             int row = Convert.ToInt32(Console.ReadLine());
             Console.Write("Enter collumn: ");
             int col = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter number of table: ");
+            Console.Write("Enter number of table: ");
             int i = Convert.ToInt32(Console.ReadLine());
 
             MineSweeper game = new MineSweeper(row, col);
             for (int j = 0; j < i; j++)
             {
-                Console.WriteLine("[Table {0}]",j);
+                Console.WriteLine("[Table {0}] Bomb: {1}",j, game.fixedBomb);
                 game.Setup();
                 game.DrawMap();
                 Console.WriteLine("______________________");
@@ -57,7 +57,7 @@ namespace MineSweeper
         // Variables and constants
         private int fixedRow;                         // x cordinate 
         private int fixedColumn;                      // y cordinate 
-        private const int fixedBomb = 5;
+        public int fixedBomb;
 
         private string[,] map;        // Printing array
         private int[,] neighbor;      // Neighbor array 
@@ -69,6 +69,7 @@ namespace MineSweeper
             
             this.fixedRow = intputRow;
             this.fixedColumn = inputColumn;
+            BombCalculate();
 
             map = new string[fixedRow, fixedColumn];
             neighbor = new int[fixedRow, fixedColumn];
@@ -78,8 +79,8 @@ namespace MineSweeper
 
 
         void BombCalculate()
-        {
-            
+        { 
+            fixedBomb = Convert.ToInt32(Math.Sqrt(fixedRow * fixedColumn));
         }
 
         public void DrawMap() //method to print map to the 
