@@ -17,11 +17,11 @@ namespace ArrayInsertion
          * 
          * 
          * List = {1 2 4 8 9 6 2}
-         * index   0 1 2 3 4 5 7
+         * index   0 1 2 3 4 5 6
          * 
          * InsertAtIndex(value = 4, index = 5)
-         *  +List.Add()
-         *  + loop 
+         *  List = {1 2 4 8 9 4 8 2}
+         *  index   0 1 2 3 4 5 6 7
         */
 
         static void Main(string[] args)
