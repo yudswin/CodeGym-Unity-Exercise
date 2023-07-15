@@ -23,36 +23,36 @@ namespace SnakeTheGame
 {
     internal class Snake
     {
-        //                   [LOCAL PARAMETERS]
-        //Board
+
         int Height = 25;
         int Width = 50;
 
-        //Snake
-        bool isAlive = true;
-        int parts = 100;
-        int[] X, Y;
-
-        //Fruit
-        int fruitX;
-        int fruitY;
+        bool isAlive, horizontal, vertical;
+        bool isPause = false;
+        int parts = 100;                // Snake size 
+        int[] X, Y;                     // Snake 
+        int fruitX, fruitY;             // Fruit coordinates
         Random rnd = new Random();
+        ConsoleKeyInfo keyInfo = new ConsoleKeyInfo(); 
+        ConsoleKey key = ConsoleKey.UpArrow;
 
-
-        //                   [CONSTRUCTOR]
         Snake()
-        {
-            //Snake start location
+        {   
             X = new int[Height * Width];
             Y = new int[Height * Width];
-            X[0] = Width / 2;
+
+            isAlive = true;
+
+            X[0] = Width / 2;                   // Snake start location
             Y[0] = Height / 2;
 
-            //Fruit start location
-            RandomFruit();
+            key = ConsoleKey.UpArrow;
+            horizontal = true;
+            vertical = false;
+
+            RandomFruit();                      // Fruit start location
         }
 
-        //                   [DEBUGGING]
         private void SnakeLocation() // Update Snake location
         {
             Console.SetCursorPosition(Width + 5, 0);
@@ -68,11 +68,10 @@ namespace SnakeTheGame
 
         private void Render()
         {
-            //SnakeLocation(); // Debugging
-            //Draw Vertical Border
-            //color format
-            Console.ForegroundColor = ConsoleColor.Red;
-            for (int i = 0; i <= Height; i += Height)
+            ScreenSetting(51, 26);
+
+            Console.ForegroundColor = ConsoleColor.Red;     // Color format
+            for (int i = 0; i <= Height; i += Height)       // Draw Vertical Border
             {
                 for (int j = 0; j <= Width; j++)
                 {
@@ -80,10 +79,8 @@ namespace SnakeTheGame
                     Console.Write("═");
                 }
             }
-        
-    
-            //Draw Horizontal Border
-            for (int i = 0;i <= Width; i += Width)
+
+            for (int i = 0;i <= Width; i += Width)          // Draw Horizontal Border
             {
                 for (int j = 0; j <= Height; j++)
                 {
@@ -92,31 +89,26 @@ namespace SnakeTheGame
                 }
             }
 
-            //Draw Corner
+            // Draw Corner
             Console.SetCursorPosition(0, 0);
             Console.Write("╔");
-
             Console.SetCursorPosition(0, Height);
             Console.Write("╚");
-
             Console.SetCursorPosition(Width, 0);
             Console.Write("╗");
-
             Console.SetCursorPosition(Width, Height);
             Console.Write("╝");
+            Console.ResetColor();                            // End color format
 
-            Console.ResetColor(); //end color format
-
-            //Draw Fruit
-            if (isAlive)
+            // Draw Fruit
+            if (isAlive)        
             {
-                Console.BackgroundColor = ConsoleColor.Yellow;
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.SetCursorPosition(fruitX, fruitY);
                 Console.Write("$");
                 Console.ResetColor();
             }
-
         }
 
 
@@ -130,7 +122,7 @@ namespace SnakeTheGame
                 if (fruitX == X[i] && fruitY == Y[i])
                     RandomFruit();
             }
-        } //end RandomFruit()
+        }
 
         private void DrawSnake(int i)
         {
@@ -143,7 +135,6 @@ namespace SnakeTheGame
             Console.ResetColor();
         }
 
-        //                   [GAME STATE]
         private void GameOver()
         {
             string[] lines = new string[3];
@@ -161,79 +152,93 @@ namespace SnakeTheGame
                 Console.WriteLine(lines[i]);
                 topPadding++;
             }
-            string replay = "press any key to restart the game";
+
+            string replay = "press [R] to restart the game";
             leftPadding = Width / 2 - replay.Length / 2;
             Console.SetCursorPosition(leftPadding, topPadding + 1);
             Console.WriteLine(replay);
             Console.ResetColor();
         }
 
+        private void Pause()
+        {
+            Console.Clear();
 
-        //[LOGIC AND MANAGER]
+            string[] lines = new string[3];
+            lines[0] = "╔════════════╗";
+            lines[1] = "║ GAME PAUSE ║";
+            lines[2] = "╚════════════╝";
+
+            // Calculate the center position
+            int leftPadding = Width / 2 - lines[0].Length / 2;
+            int topPadding = Height / 2 - 1;
+            for (int i = 0; i < lines.Length; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.SetCursorPosition(leftPadding, topPadding);
+                Console.WriteLine(lines[i]);
+                topPadding++;
+            }
+
+            string resumeMessage = "press [P] to resume";
+            leftPadding = (Width - resumeMessage.Length) / 2;
+            topPadding += 1;
+            Console.SetCursorPosition(leftPadding, topPadding);
+            Console.WriteLine(resumeMessage);
+
+            ConsoleKeyInfo newKey = Console.ReadKey(true); // Wait for any key press to resume
+            if (newKey.Key == ConsoleKey.P)
+            isPause = false; // Resume the game by setting isPause to false
+        }
+
         private void Logic()
         {
-
-            //Fruit
-            if (X[0] == fruitX && Y[0] == fruitY)
-            {
-                parts++;
-                RandomFruit();
-            }
-
-            //Snake
-            if (X[0] > 0 && X[0] < Width && Y[0] > 0 && Y[0] < Height)
-            {
-                // console color format
-                
-                for (int i = parts; i > 1; i--)
+            
+                //Get point
+                if (X[0] == fruitX && Y[0] == fruitY)
                 {
-                    X[i - 1] = X[i - 2];
-                    Y[i - 1] = Y[i - 2];
+                    parts++;
+                    RandomFruit();
                 }
 
-                for (int i = 0; i < parts; i++)
+                //Snake growth 
+                if (X[0] > 0 && X[0] < Width && Y[0] > 0 && Y[0] < Height)
                 {
-                    DrawSnake(i);
-                }
-                Console.ResetColor(); // end color format
+                    for (int i = parts; i > 1; i--)
+                    {
+                        X[i - 1] = X[i - 2];
+                        Y[i - 1] = Y[i - 2];
+                    }
 
-            } else
-            {
-                isAlive = false;
-                Console.ForegroundColor = ConsoleColor.Green; // console color format
-                for (int i = 1; i < parts; i++)
-                {
-                    DrawSnake(i);
+                    for (int i = 0; i < parts; i++) DrawSnake(i);
                 }
-                Console.ResetColor(); //end color format
-                GameOver();
-            }
-
-            for (int i = 2; i < parts; i++)
-            {
-                if (X[0] == X[i] && Y[0] == Y[i])
+                else
                 {
                     isAlive = false;
+                    Console.ForegroundColor = ConsoleColor.Green;   // console color format
+                    for (int i = 1; i < parts; i++) DrawSnake(i);
+                    Console.ResetColor();                           // end color format
                     GameOver();
-                    break;
                 }
-            }
 
-            //Speed
-            if (isAlive)
-            {
-                int delay = Math.Max(200 - (parts * 10), 50);
-                Thread.Sleep(delay);
-            }
+                for (int i = 2; i < parts; i++)
+                {
+                    if (X[0] == X[i] && Y[0] == Y[i])
+                    {
+                        isAlive = false;
+                        GameOver();
+                        break;
+                    }
+                }
 
-        } //end Logic()
-
-
-        // [CONTROLLER]
-        ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
-        ConsoleKey key = ConsoleKey.W;
-        bool horizontal = false, vertical = true;
-
+                //Game speed
+                if (isAlive)
+                {
+                    int delay = Math.Max(200 - (parts * 10), 50);
+                    Thread.Sleep(delay);
+                }
+            
+        }
 
         private void Input()
         {
@@ -274,15 +279,17 @@ namespace SnakeTheGame
                             key = keyInfo.Key;
                         }
                         break;
+                    case ConsoleKey.P:
+                        isPause = !isPause;
+                        break;
+
                 }
             }
-        } //end Input()
+        }
 
         private void Update()
         {
-            
-            // Snake moving
-            switch (key)
+            switch (key)        // Snake moving
             {
                 case ConsoleKey.UpArrow:
                     Y[0]--;
@@ -297,63 +304,56 @@ namespace SnakeTheGame
                     X[0]--;
                     break;
             }
+        }
 
-        } //end Update
-
-
-        // [GAME RENDERING]
         public void Play()
         {
-            isAlive = true;
-            Console.CursorVisible = false;
-
-            // Initialize the initial direction of the snake
-            horizontal = true;
-            vertical = false;
-            key = ConsoleKey.UpArrow;
             
-
 
             while (isAlive)
             {
                 Console.Clear();
                 Render();
                 Input();
-                Update();
-                Logic();
+
+                if (!isPause)
+                {
+                    Update();
+                    Logic();
+                }
+                else
+                {
+                    Pause();
+                }
             }
-        } //end Play
+        } 
 
         public void ScreenSetting(int width, int height)
         {
-            Console.InputEncoding = Encoding.UTF8; //Input font
-            Console.OutputEncoding = Encoding.UTF8; //Output font 
-
-            Console.SetWindowSize(width, height); // Set size window
-            Console.BufferWidth = Console.WindowWidth;
-            Console.BufferHeight = Console.WindowHeight;// Set number of row and collumn 
-        } //end SreenSetting 
+            Console.CursorVisible = false; 
+            Console.InputEncoding = Encoding.UTF8;          // Set input font
+            Console.OutputEncoding = Encoding.UTF8;         // Set output font 
+            Console.SetWindowSize(width, height);           // Set size window
+            Console.BufferWidth = Console.WindowWidth;      // Set number of row and collumn 
+            Console.BufferHeight = Console.WindowHeight;    
+        }
 
 
         //[MAIN]
         static void Main(string[] args)
         {
-            
             Console.WriteLine("Press any key to start the game !!!");
             Console.ReadKey(true);
 
         replay:
             Snake game = new Snake();
-            game.ScreenSetting(51, 26); // Set the window size
             game.Play();
 
-            if (Console.ReadKey().Key != ConsoleKey.Escape)
+            while (Console.ReadKey().Key != ConsoleKey.R)
             {
                 Console.Clear();
                 goto replay;
             }
         }
-
-        
     }
 }
