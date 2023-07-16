@@ -58,7 +58,7 @@ namespace SnakeTheGame
 
         private void Render()
         {
-            ScreenSetting(Width + 1, Height + PanelHeight - 1);
+            ScreenSetting(Width + 1, Height + PanelHeight + 1);
 
             Console.ForegroundColor = ConsoleColor.Red;     // Color format
             for (int i = 0; i <= Height; i += Height)       // Draw Vertical Border
@@ -108,6 +108,7 @@ namespace SnakeTheGame
             int panelWidth = w;
             int panelHeight = h;
 
+            // Score, Hi- Score and Timer
             Console.ForegroundColor = ConsoleColor.Yellow;
             string hiScoreStr = "Hi-Score: ";
             Console.SetCursorPosition(1, panelHeight + 1);
@@ -122,7 +123,17 @@ namespace SnakeTheGame
             leftPadding = panelWidth - (timeStr.Length + 4);
             Console.SetCursorPosition(leftPadding, panelHeight + 1);
             Console.Write(timeStr + timeCounter);
-            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            // Button instructions
+            string arrowStr = "[↑ ↓ ← →] Moving";
+            Console.SetCursorPosition(1, panelHeight + 2);
+            Console.Write(arrowStr); 
+            string buttonStr = "[Q] Quit [P] Pause";
+            leftPadding = (panelWidth - buttonStr.Length);
+            Console.SetCursorPosition(leftPadding, panelHeight + 2);
+            Console.Write(buttonStr);
+
         }
 
 
@@ -275,7 +286,7 @@ namespace SnakeTheGame
             //Game speed
             if (isAlive)
             {
-                int delay = Math.Max(200 - (parts * 10), 50);
+                int delay = Math.Max(200 - (parts * 5), 20);
                 Thread.Sleep(delay);
             }
 
@@ -323,6 +334,9 @@ namespace SnakeTheGame
                     case ConsoleKey.P:
                         isPause = !isPause;
                         break;
+                    case ConsoleKey.Q:
+                        Environment.Exit(0);
+                        break;
 
                 }
             }
@@ -351,7 +365,7 @@ namespace SnakeTheGame
         {
             Console.Clear();
             isAlive = true;
-            score = 0; parts = 10; timeCounter = 0;
+            score = 0; parts = 3; timeCounter = 0;
 
             X = new int[25 * 50];
             Y = new int[25 * 50];
