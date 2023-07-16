@@ -3,55 +3,45 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.ExceptionServices;
+using System.Runtime.Remoting.Lifetime;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-//sources : https://youtu.be/_GmjXi1kcHA
-// https://www.codeproject.com/Articles/4426/Console-Enhancements
+/*
+ * https://youtu.be/_GmjXi1kcHA
+ * https://www.codeproject.com/Articles/4426/Console-Enhancements
+ * https://github.com/khietltn/basicCsharp/tree/main/CGO_Buoi06_SnakeGame
+ * 
+*/
 
-
-/* [Y]
+/* [Y] Height
  * ^
  * |
  * |
- * |_ _ _ _> [X]
+ * |_ _ _ _> [X] Width 
 */
 
 namespace SnakeTheGame
 {
     public class Snake
     {
-
+        
         int Height = 25;
         int Width = 50;
+        int PanelHeight = 3;
 
         bool isAlive, horizontal, vertical;
         bool isPause = false;
-        int parts = 3;                // Snake size 
-        int[] X, Y;                     // Snake 
-        int fruitX, fruitY;             // Fruit coordinates
+        int parts, score, hiScore, timeCounter;     // Snake size 
+        Stopwatch watch = new Stopwatch();
+        int[] X,Y;
+        int fruitX, fruitY;                         // Fruit coordinates
         Random rnd = new Random();
         ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
         ConsoleKey key = ConsoleKey.UpArrow;
 
-        Snake()
-        {
-            X = new int[Height * Width];
-            Y = new int[Height * Width];
-
-            isAlive = true;
-
-            X[0] = Width / 2;                   // Snake start location
-            Y[0] = Height / 2;
-
-            key = ConsoleKey.UpArrow;
-            horizontal = true;
-            vertical = false;
-
-            RandomFruit();                      // Fruit start location
-        }
 
         private void SnakeLocation() // Update Snake location
         {
@@ -68,7 +58,7 @@ namespace SnakeTheGame
 
         private void Render()
         {
-            ScreenSetting(51, 26);
+            ScreenSetting(Width + 1, Height + PanelHeight - 1);
 
             Console.ForegroundColor = ConsoleColor.Red;     // Color format
             for (int i = 0; i <= Height; i += Height)       // Draw Vertical Border
@@ -100,6 +90,8 @@ namespace SnakeTheGame
             Console.Write("╝");
             Console.ResetColor();                            // End color format
 
+            Panel(Width, Height);
+
             // Draw Fruit
             if (isAlive)
             {
@@ -109,6 +101,28 @@ namespace SnakeTheGame
                 Console.Write("$");
                 Console.ResetColor();
             }
+        }
+
+        private void Panel(int w, int h)
+        {
+            int panelWidth = w;
+            int panelHeight = h;
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            string hiScoreStr = "Hi-Score: ";
+            Console.SetCursorPosition(1, panelHeight + 1);
+            Console.Write(hiScoreStr + hiScore);
+
+            string scoreStr = "Score: ";
+            int leftPadding = (panelWidth - scoreStr.Length) / 2;
+            Console.SetCursorPosition(leftPadding, panelHeight + 1);
+            Console.Write(scoreStr + score);
+            
+            string timeStr = "Time: ";
+            leftPadding = panelWidth - (timeStr.Length + 4);
+            Console.SetCursorPosition(leftPadding, panelHeight + 1);
+            Console.Write(timeStr + timeCounter);
+            Console.ResetColor();
         }
 
 
@@ -129,14 +143,18 @@ namespace SnakeTheGame
             Console.BackgroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(X[0], Y[0]);
             Console.Write("@");
-            Console.BackgroundColor = ConsoleColor.Magenta;
-            Console.SetCursorPosition(X[i], Y[i]);
-            Console.Write(" ");
+            if (X[i] != 0 && Y[i] != 0)
+            {
+                Console.BackgroundColor = ConsoleColor.Magenta;
+                Console.SetCursorPosition(X[i], Y[i]);
+                Console.Write(" ");
+            }
             Console.ResetColor();
         }
 
         private void GameOver()
         {
+            //
             string[] lines = new string[3];
             lines[0] = "╔═══════════╗";
             lines[1] = "║ GAME OVER ║";
@@ -158,6 +176,7 @@ namespace SnakeTheGame
             Console.SetCursorPosition(leftPadding, topPadding + 1);
             Console.WriteLine(replay);
             Console.ResetColor();
+            
         }
 
         private void Pause()
@@ -191,6 +210,26 @@ namespace SnakeTheGame
                 isPause = false; // Resume the game by setting isPause to false
         }
 
+
+        private void UpdateHighScore()
+        {
+            if (score >= hiScore)
+            {
+                hiScore = score;
+            }
+        }
+
+        private void Time()
+        {
+            
+            watch.Start();
+                if (watch.ElapsedMilliseconds >= 1000)
+                {
+                    timeCounter++;
+                    watch.Restart();
+                }
+        }
+
         private void Logic()
         {
 
@@ -198,7 +237,9 @@ namespace SnakeTheGame
             if (X[0] == fruitX && Y[0] == fruitY)
             {
                 parts++;
+                score++;
                 RandomFruit();
+                UpdateHighScore();
             }
 
             //Snake growth 
@@ -308,11 +349,26 @@ namespace SnakeTheGame
 
         public void Play()
         {
+            Console.Clear();
+            isAlive = true;
+            score = 0; parts = 10; timeCounter = 0;
 
+            X = new int[25 * 50];
+            Y = new int[25 * 50];
+            X[0] = Width / 2;                   // Snake start location
+            Y[0] = Height / 2;
+
+            key = ConsoleKey.UpArrow;
+            horizontal = true;
+            vertical = false;
+
+
+            RandomFruit();                      // Fruit start location
 
             while (isAlive)
             {
                 Console.Clear();
+                Time();
                 Render();
                 Input();
 
@@ -345,12 +401,11 @@ namespace SnakeTheGame
 
             Console.WriteLine("Press any key to start the game !!!");
             Console.ReadKey(true);
-
+            Snake game = new Snake();
             bool replay = true;
 
             while (replay)
             {
-                Snake game = new Snake();
                 game.Play();
 
                 ConsoleKeyInfo key;
