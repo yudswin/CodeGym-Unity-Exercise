@@ -28,9 +28,9 @@ namespace SnakeTheGame
     public class Snake
     {
         
-        int Height = 25;
-        int Width = 50;
-        int PanelHeight = 3;
+        private const int Height = 25;
+        private const int Width = 50;
+        public const int PanelHeight = 3;
 
         bool isAlive, horizontal, vertical;
         bool isPause = false;
@@ -42,6 +42,16 @@ namespace SnakeTheGame
         ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
         ConsoleKey key = ConsoleKey.UpArrow;
 
+
+        public int GetHeight()
+        {
+            return Height;
+        }
+
+        public int GetWidth()
+        {
+            return Width;
+        }
 
         private void SnakeLocation() // Update Snake location
         {
@@ -58,39 +68,10 @@ namespace SnakeTheGame
 
         private void Render()
         {
-            ScreenSetting(Width + 1, Height + PanelHeight + 1);
 
             Console.ForegroundColor = ConsoleColor.Red;     // Color format
-            for (int i = 0; i <= Height; i += Height)       // Draw Vertical Border
-            {
-                for (int j = 0; j <= Width; j++)
-                {
-                    Console.SetCursorPosition(j, i);
-                    Console.Write("═");
-                }
-            }
-
-            for (int i = 0; i <= Width; i += Width)          // Draw Horizontal Border
-            {
-                for (int j = 0; j <= Height; j++)
-                {
-                    Console.SetCursorPosition(i, j);
-                    Console.Write("║");
-                }
-            }
-
-            // Draw Corner
-            Console.SetCursorPosition(0, 0);
-            Console.Write("╔");
-            Console.SetCursorPosition(0, Height);
-            Console.Write("╚");
-            Console.SetCursorPosition(Width, 0);
-            Console.Write("╗");
-            Console.SetCursorPosition(Width, Height);
-            Console.Write("╝");
-            Console.ResetColor();                            // End color format
-
-            Panel(Width, Height);
+            Board();
+            Panel();
 
             // Draw Fruit
             if (isAlive)
@@ -101,12 +82,48 @@ namespace SnakeTheGame
                 Console.Write("$");
                 Console.ResetColor();
             }
+            ScreenSetting();
         }
 
-        private void Panel(int w, int h)
+        public void Board(int w = Width, int h = Height)
         {
-            int panelWidth = w;
-            int panelHeight = h;
+            int boardWidth = w;
+            int boardHeigh = h;
+           
+            for (int i = 0; i <= boardHeigh; i += boardHeigh)       // Draw Vertical Border
+            {
+                for (int j = 0; j <= boardWidth; j++)
+                {
+                    Console.SetCursorPosition(j, i);
+                    Console.Write("═");
+                }
+            }
+
+            for (int i = 0; i <= boardWidth; i += Width)          // Draw Horizontal Border
+            {
+                for (int j = 0; j <= boardHeigh; j++)
+                {
+                    Console.SetCursorPosition(i, j);
+                    Console.Write("║");
+                }
+            }
+
+            // Draw Corner
+            Console.SetCursorPosition(0, 0);
+            Console.Write("╔");
+            Console.SetCursorPosition(0, boardHeigh);
+            Console.Write("╚");
+            Console.SetCursorPosition(boardWidth, 0);
+            Console.Write("╗");
+            Console.SetCursorPosition(boardWidth, boardHeigh);
+            Console.Write("╝");
+            Console.ResetColor();                            // End color format
+        }
+
+        private void Panel()
+        {
+            int panelWidth = Width;
+            int panelHeight = Height;
 
             // Score, Hi- Score and Timer
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -232,7 +249,6 @@ namespace SnakeTheGame
 
         private void Time()
         {
-            
             watch.Start();
                 if (watch.ElapsedMilliseconds >= 1000)
                 {
@@ -247,6 +263,7 @@ namespace SnakeTheGame
             //Get point
             if (X[0] == fruitX && Y[0] == fruitY)
             {
+                Console.Beep();
                 parts++;
                 score++;
                 RandomFruit();
@@ -376,7 +393,6 @@ namespace SnakeTheGame
             horizontal = true;
             vertical = false;
 
-
             RandomFruit();                      // Fruit start location
 
             while (isAlive)
@@ -397,8 +413,7 @@ namespace SnakeTheGame
                 }
             }
         }
-
-        public void ScreenSetting(int width, int height)
+        public void ScreenSetting(int width = Width + 1, int height = Height + PanelHeight + 1)
         {
             Console.CursorVisible = false;
             Console.InputEncoding = Encoding.UTF8;          // Set input font
@@ -411,25 +426,66 @@ namespace SnakeTheGame
 
         //[MAIN]
         static void Main(string[] args)
-        {
-
-            Console.WriteLine("Press any key to start the game !!!");
-            Console.ReadKey(true);
+        {   //  Start menu 
             Snake game = new Snake();
-            bool replay = true;
 
-            while (replay)
+            game.ScreenSetting();
+            int screenWidth = game.GetWidth();
+            int screenHeight = game.GetHeight();
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            game.Board(50, 28);
+            int titleRow = 7;
+
+
+            string[] title = new string[titleRow];
+            title[0] = @"      ____  _   _    _    _  ____________ ";
+            title[1] = @"     / ___|| \ | |  / \  | |/ / _________|";
+            title[2] = @"     \___ \|  \| | / _ \ | ' /|  _|       ";
+            title[3] = @" ________) | |\  |/ ___ \| . \| |___      ";
+            title[4] = @"|_________/|_| \_/_/   \_\_|\_\_____|     ";
+            title[5] = @"                                          ";
+            title[6] = @"               [MADE BY YUD]              ";
+
+
+            // Calculate the center position
+            int leftPadding = (screenWidth - title[0].Length) / 2;
+            int topPadding = screenHeight / 2 - 2;
+            for (int i = 0; i < title.Length; i++)
             {
-                game.Play();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.SetCursorPosition(leftPadding, topPadding);
+                Console.WriteLine(title[i]);
+                topPadding++;
+            }
 
-                ConsoleKeyInfo key;
-                do
+            string inf = " press [arrow] to start the game ";
+            leftPadding = (screenWidth - inf.Length) / 2;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(leftPadding, topPadding + 3);
+            Console.WriteLine(inf);
+            game.ScreenSetting();
+
+            // Start game
+            while (true)
+            {
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+                if (keyInfo.Key == ConsoleKey.DownArrow || keyInfo.Key == ConsoleKey.UpArrow || keyInfo.Key == ConsoleKey.LeftArrow || keyInfo.Key == ConsoleKey.RightArrow)
                 {
-                    key = Console.ReadKey();
-                    if (key.Key == ConsoleKey.R) break;
-                    if (key.Key == ConsoleKey.Escape) replay = false;
+                    game.Play(); break;
+                }
 
-                } while (key.Key != ConsoleKey.R && key.Key != ConsoleKey.Escape);
+                if (keyInfo.Key == ConsoleKey.Q) Environment.Exit(0);
+            }
+
+            // Replay game
+            while (true)
+            {
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+                if (keyInfo.Key == ConsoleKey.R) game.Play();
+                if (keyInfo.Key == ConsoleKey.Q) Environment.Exit(0);
             }
         }
     }
