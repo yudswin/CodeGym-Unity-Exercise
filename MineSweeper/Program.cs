@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace MineSweeper
 {
@@ -17,12 +18,15 @@ namespace MineSweeper
             int i = Convert.ToInt32(Console.ReadLine());
 
             MineSweeper game = new MineSweeper(row, col);
+            Console.Clear();
             for (int j = 0; j < i; j++)
             {
                 Console.WriteLine("[Table {0}] Bomb: {1}",j, game.fixedBomb);
                 game.Setup();
                 game.DrawMap();
                 Console.WriteLine("______________________");
+                Thread.Sleep(500);
+                Console.Clear() ;   
             }
             Console.ReadKey();
 
