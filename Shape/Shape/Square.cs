@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shape
 {
-    public class Square : Rectangle
+    public class Square : Rectangle, Colorable
     {
         // Constructors
         public Square() { }
@@ -34,5 +34,9 @@ namespace Shape
             return String.Format("A Square with side = {0}, which is a subclass of {1}", Width, base.ToString());
         }
 
+        public void HowToColor()
+        {
+            Console.WriteLine("Color all four sides " + ToString());
+        }
     }
 }
