@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shape
 {
-    public class Circle : Shape
+    public class Circle : Shape, Resizeable
     {
         // Data field
         private double radius = 1.0f;
@@ -44,5 +44,9 @@ namespace Shape
             return String.Format("A Circle with radius = {0}, which is subclass of {1}", radius, base.ToString());
         }
 
+        public void Resize(double percent)
+        {
+            radius *= percent / 100;
+        }
     }
 }

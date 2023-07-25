@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shape
 {
-    public class Rectangle : Shape
+    public class Rectangle : Shape, Resizeable
     {
         // Data field
         private double width = 1.0f;
@@ -46,6 +46,12 @@ namespace Shape
         public override string ToString()
         {
             return String.Format("A Rectangle with width = {0}, height = {1}, which is subclass of {2}", width, length, base.ToString());
+        }
+
+        public virtual void Resize(double percent)
+        {
+            width *= percent / 100;
+            length *= percent / 100;
         }
     }
 }

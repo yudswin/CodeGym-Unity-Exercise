@@ -34,6 +34,5 @@ namespace Shape
             return String.Format("A Square with side = {0}, which is a subclass of {1}", Width, base.ToString());
         }
 
-
     }
 }

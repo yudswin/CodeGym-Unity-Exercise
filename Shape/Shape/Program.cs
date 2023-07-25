@@ -10,51 +10,38 @@ namespace Shape
     {
         static void Main(string[] args)
         {
-            Shape shape = new Shape();
+            while (true)
+            {
+                Rectangle rec = new Rectangle(5.0, 3.0, "ocean blue", true);
+                Square shape = new Square(4.0, "black", false);
+                Circle cir = new Circle(3.4, "pink", true);
+                Random rnd = new Random();
 
-            Console.WriteLine(shape);
+                Console.WriteLine("Before resize");
+                Console.WriteLine(rec.ToString());
+                Console.WriteLine();
+                Console.WriteLine(shape.ToString());
+                Console.WriteLine();
+                Console.WriteLine(cir.ToString());
 
-            shape = new Shape("red", false);
+                //Resize
+                rec.Resize(rnd.Next(1, 100));
+                shape.Resize(rnd.Next(1, 100));
+                cir.Resize(rnd.Next(1, 100));
 
-            Console.WriteLine(shape);
+                Console.WriteLine("______________");
+                Console.WriteLine("After resize");
+                Console.WriteLine(rec.ToString());
+                Console.WriteLine();
+                Console.WriteLine(shape.ToString());
+                Console.WriteLine();
+                Console.WriteLine(cir.ToString());
 
-            Console.WriteLine("Hello World!");
-
-            Circle circle = new Circle();
-
-            Console.WriteLine(circle);
-
-            circle = new Circle(3.5);
-
-            Console.WriteLine(circle);
-
-            circle = new Circle(3.5, "indigo", false);
-
-            Console.WriteLine(circle);
-
-            Rectangle rectangle = new Rectangle();
-
-            Console.WriteLine(rectangle);
-
-            rectangle = new Rectangle(2.3, 5.8);
-
-            Console.WriteLine(rectangle);
-
-            rectangle = new Rectangle(2.5, 3.8, "orange", true);
-
-            Console.WriteLine(rectangle);
-
-            Square square = new Square();
-
-            Console.WriteLine(square);
-
-            square = new Square(2.3);
-
-            Console.WriteLine(square);
-
-            square = new Square(5.8, "yellow", true);
-
-            Console.WriteLine(square);
+                Console.WriteLine("press Enter to stop");
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                if (keyInfo.Key == ConsoleKey.Enter) break;
+                Console.Clear();
+            }
 
             Console.ReadKey();
         }

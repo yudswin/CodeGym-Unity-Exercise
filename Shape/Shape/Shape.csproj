@@ -77,6 +77,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rectangle.cs" />
+    <Compile Include="Resizeable.cs" />
     <Compile Include="Shape.cs" />
     <Compile Include="UnitTest\ShapeTests.cs" />
     <Compile Include="Square.cs" />
