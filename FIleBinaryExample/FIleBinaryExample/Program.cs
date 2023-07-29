@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Practice_CopyFile
+namespace FIleBinaryExample
 {
     class Program
     {
